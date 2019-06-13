@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/uploadMovie.css">
+    <title>Upload movie</title>
+</head>
+<body>
+    <form action="/upload" method="post" id="upload-form">
+        <input type="file" name="movieFile" required
+            accept="video/*"><br>
+        
+        <input type="text" name="hrvName" required
+            placeholder="Hrvatsko ime filma"><br>
+
+        <input type="text" name="engName" required
+            placeholder="Englesko ime filma"><br>
+
+        <input type="text" name="categories" required
+            placeholder="Kategorije filma"><br>
+
+        <input type="text" name="year" required
+            placeholder="Godina filma"><br>
+
+        <input type="text" name="description" required
+            placeholder="Opis filma"><br>
+
+        <input type="text" name="trailerLink" required
+            placeholder="Trailer link za film"><br>
+        
+        <input type="submit" value="Uploadaj film">
+    </form>
+</body>
+</html>

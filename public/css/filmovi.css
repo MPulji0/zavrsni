@@ -1,0 +1,44 @@
+
+.movies-display {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+    /* align-items: center; */
+}
+.card-movie {
+    border: 1px solid black;
+    border-radius: 5px;
+    flex-grow: 1;
+    flex-basis: 26%;
+    /* flex: 2 1 26%; explanation below */
+    margin: 5px;
+    background-color: lightgrey;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.movie-img {
+    display: block;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+}
+
+.movie-text {
+    padding: 5px;
+}
+
+.more {
+    display: none;
+}
+
+.watch-here {
+    color: black;
+}
+
+.title1 {
+    font-family: 'Permanent Marker', cursive;
+font-family: 'Rock Salt', cursive;
+}
