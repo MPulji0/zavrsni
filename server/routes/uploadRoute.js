@@ -1,8 +1,12 @@
 const express = require('express')
 const path = require('path')
-const moviesModel = require('../models/moviesModel')
+const fs = require('fs')
 
+const moviesModel = require('../models/moviesModel')
 const router = express.Router()
+
+// Uploadanje file-a na server u folder /filmovi
+const filmoviPath = path.join(__dirname, '../filmovi')
 
 router.get('/', (req, res) => {
     const userCookie = req.cookies['uname']
@@ -31,25 +35,31 @@ router.post('/', async (req, res) => {
     if (!req.files) return res.redirect('/?file=None')
 
     categories = categories.split(' ')
-    const movieFile = req.files.movieFile
-    console.log(movieFile)
+    const { movieFile, movieImage } = req.files
 
-    // Uploadanje file-a na server u folder /filmovi
-    const filmoviPath = path.join(__dirname, '../filmovi', `${movieFile.name}`)
-    movieFile.mv(filmoviPath, (err) => {
-        if (err) {
-            console.error(err)
-            return res.redirect('/?upload=Failed')
-        }
-    })
+    // Ime novog foldera za film
+    const newMovieFolder = path.join(filmoviPath, movieFile.md5)
+
+    // Ako folder (film) vec ne postoji, kreiraj folder unutar foldera filmovi
+    if (!fs.existsSync(newMovieFolder)) {
+        fs.mkdirSync(newMovieFolder)
+    }
+
+    let saveRes = saveFileToServer(path.join(newMovieFolder, movieFile.name), movieFile)
+    console.log(saveRes)
+    if (!saveRes) return res.redirect('/?movUpload=Failed')
+    saveRes = saveFileToServer(path.join(newMovieFolder, movieImage.name), movieImage)
+    if (!saveRes) return res.redirect('/?imgUpload=Failed')
 
     // Spremanje podataka o filmu u bazu podataka
+    // path.extname dohvaca ekstenziju filea.
     const newMovie = new moviesModel({
         hashName: movieFile.md5,
+        hashImageName: `${movieFile.md5}${path.extname(movieImage.name)}`,
         hrvName,
         engName,
         categories,
-        length: 5,
+        length: 5,                                              // ****************** TODO ******************
         year,
         description,
         trailerLink
@@ -60,11 +70,21 @@ router.post('/', async (req, res) => {
         result = await newMovie.save()
     } catch(error) {
         console.error(error)
-        return res.redirect('/?upload=Failed')
+        return res.redirect('/?dbUpload=Failed')
     }
 
     console.log('Movie added to a database.')
     return res.redirect('/?upload=Success')
 })
+
+function saveFileToServer(path, fileObj) {
+    fileObj.mv(path, err => {
+        if (err) {
+            console.error(err)
+            return false
+        }
+    })
+    return true
+}
 
 module.exports = router

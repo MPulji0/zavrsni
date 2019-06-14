@@ -10,6 +10,11 @@ const MoviesSchema = new Schema({
         required: true,
         unique: true
     },
+    hashImageName: {
+        type: String,
+        required: true,
+        unique: true
+    },
     hrvName: {
         type: String,
         required: true,
