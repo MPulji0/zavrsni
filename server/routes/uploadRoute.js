@@ -52,10 +52,10 @@ router.post('/', async (req, res) => {
     if (!saveRes) return res.redirect('/?imgUpload=Failed')
 
     // Spremanje podataka o filmu u bazu podataka
-    // path.extname dohvaca ekstenziju filea.
     const newMovie = new moviesModel({
         hashName: movieFile.md5,
-        hashImageName: `${movieFile.md5}${path.extname(movieImage.name)}`,
+        movieName: movieFile.name,
+        hashImageName: movieImage.name,
         hrvName,
         engName,
         categories,

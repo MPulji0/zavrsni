@@ -4,8 +4,12 @@ const ObjectId = mongoose.ObjectId
 
 const MoviesSchema = new Schema({
     movieId: ObjectId,
-    // Name is hash
     hashName: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    movieName: {
         type: String,
         required: true,
         unique: true
