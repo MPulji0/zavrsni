@@ -10,7 +10,7 @@ const fileUpload = require('express-fileupload')
 // Globalne varijable
 global.url = 'mongodb://localhost:27017'
 global.publicFolderPath = path.join(__dirname, '../public')
-global.dbName = 'zavrsni'
+global.dbName = 'zavrsni1'
 
 // Korisnicke biblioteke
 const dbHelper = require('./dbHelper')

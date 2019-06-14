@@ -7,26 +7,29 @@ const MoviesSchema = new Schema({
     // Name is hash
     hashName: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     hrvName: {
         type: String,
-        required: true
+        required: true,
+        unique: true
+    },
+    engName: {
+        type: String,
+        required: true,
+        unique: true
     },
     categories: {
         type: [String],
         required: true
     },
     length: {
-        type: String,
+        type: Number,
         required: true
     },
     year: {
         type: Number,
-        required: true
-    },
-    engName: {
-        type: String,
         required: true
     },
     description: {

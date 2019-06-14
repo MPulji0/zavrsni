@@ -8,7 +8,7 @@
     <title>Upload movie</title>
 </head>
 <body>
-    <form action="/upload" method="post" id="upload-form">
+    <form action="/upload" method="post" id="upload-form" encType="multipart/form-data">
         <input type="file" name="movieFile" required
             accept="video/*"><br>
         
@@ -27,7 +27,7 @@
         <input type="text" name="description" required
             placeholder="Opis filma"><br>
 
-        <input type="text" name="trailerLink" required
+        <input type="url" name="trailerLink" required
             placeholder="Trailer link za film"><br>
         
         <input type="submit" value="Uploadaj film">
