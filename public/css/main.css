@@ -15,15 +15,19 @@ body{
     z-index:10;}
 
 .carousel-inner img {
-        -webkit-filter: grayscale(90%);
-        filter: grayscale(90%); /* make all photos black and white */ 
-        width: 30%; /* Set width to 100% */
-        margin: auto;
-        
-      }
+  -webkit-filter: grayscale(90%);
+  filter: grayscale(90%); /* make all photos black and white */ 
+  min-height: 600px; /* Set width to 100% */
+  max-height: 600px;
+  margin: auto;
+  
+}
       
-.carousel-caption h3 {
-        color: #fff !important;
+.carousel-caption {
+  color: rgb(163, 31, 31) !important;
+  font-size: 25px;
+  font-weight: bold;
+  margin: 5px;
 }
 
 @media (max-width: 600px) {
@@ -31,6 +35,10 @@ body{
           display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
         }
       }
+
+#myCarousel {
+  z-index: 0;
+}
 
 .p-title {
     font-size:27px;
@@ -66,13 +74,46 @@ body{
   background-color: rgba(20, 20, 20, 0.5);
 }
 
+.loginNSignupContainer::after {
+  content: '';
+  width: 100%;
+  background-color: black; 
+  
+  filter: blur(8px);
+  transition: all 500ms;
+  display: block;
+}
+
 .loginNSignupContainer form{
   padding-top: 100px;
+  z-index: 2;
 }
 
 .loginNSignupContainer form input {
   padding: 10px;
   margin: 10px;
+}
+
+.loginNSignupContainer form input[type="submit"]{
+  padding: 10px;
+  margin: 10px;
+  outline: none;
+  border: none;
+  border-radius: 15px;
+}
+
+.loginNSignupContainer form input[type="text"], input[type="email"], input[type="password"]{
+  outline: none;
+  border: none;
+  background: transparent;
+  color: white;
+  border-bottom: 2px solid rgb(163, 31, 31);
+  border-radius: 15px;
+}
+
+
+.loginNSignupContainer form input::placeholder {
+  color: white;
 }
 
 .loginNSignupContainer .exitBtn {
