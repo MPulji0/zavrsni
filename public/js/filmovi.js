@@ -91,24 +91,10 @@ async function fetchNBuild() {
     await buildMovieCards(data)
 }
 
-/**
- * Funkcija u kojoj se pozivaju sve ostale funkcije.
- */
-// async function main() {
-//     await fetchNBuild()
-//     const readMoreArr = document.querySelectorAll('.read-more')
-    
-//     for(let i = 0; i < readMoreArr.length; ++i) {
-//         readMoreArr[i].addEventListener('click', readMoreText)
-//     }
-// }
-
 // **************************** IZVRSAVANJE KODA ****************************
 
 let isPressed = false
 window.onload = async () => {
-    // Pozovi main kada se ucitao prozor
-    // await main()
     await fetchNBuild()
     const readMoreArr = document.querySelectorAll('.read-more')
     

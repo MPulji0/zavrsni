@@ -59,7 +59,7 @@ function activeTabNavBar(val) {
 async function buildSlideShowCards() {
   let data = undefined
   try {
-    const url = `${window.location.href}filmovi/data`
+    const url = `${window.location.origin}/filmovi/data`
     data = await getMovies(url)
 
     // Izbrisi sva polja u objektu koja nam ne trebaju
@@ -78,12 +78,6 @@ async function buildSlideShowCards() {
     return undefined
   }
 
-  // Izgradimo karticu za slide
-  // <div class="item active">
-  // <img src="./img/1.jpg" >
-  // <div class="carousel-caption">
-    
-  // </div>  
   const itemObj = document.querySelector('.item')
   const itemIndicatorObj = document.querySelector('.carousel-indicators li')
 
@@ -92,6 +86,13 @@ async function buildSlideShowCards() {
   const carouselDiv = document.querySelector('.carousel-inner')
   const carouselIndicatorsListObj = document.querySelector('.carousel-indicators')
 
+
+  // Ako ijednog od ovih elemenata nema, prekini izvrsavanje ove funkcije
+  if (!itemObj && !itemIndicatorObj 
+    && !carouselDiv
+    && !carouselIndicatorsListObj) return undefined
+      
+  
   const itemsArr = []
   const indicatorsArr = []
 
@@ -131,7 +132,7 @@ async function buildSlideShowCards() {
 /**
  * Unutar ove funkcije se izvrsava sva logika vezana za ovu skriptu
  */
-function main() {
+async function main() {
 
   $(document).ready(function(){
     $("#myInput").on("keyup", function() {
@@ -166,14 +167,14 @@ function main() {
   }
 
   if (window.location.href === 'http://localhost:8080/') {
-  activeTabNavBar(0)
+    activeTabNavBar(0)
   } else if (window.location.href === 'http://localhost:8080/filmovi') {
     activeTabNavBar(1)
   } else if (window.location.href === 'http://localhost:8080/upload') {
     activeTabNavBar(2)
   }
 
-  buildSlideShowCards()
+  await buildSlideShowCards()
 }
 
 // ********************************* IZVRSAVANJE KODA *********************************
