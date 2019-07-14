@@ -18,7 +18,6 @@ const dbHelper = require('./dbHelper')
 const filmoviRoute = require('./routes/filmoviRoute')
 const loginRoute = require('./routes/loginRoute')
 const uploadRoute = require('./routes/uploadRoute')
-const watchMovieRoute = require('./routes/watchMovieRoute')
 const registerRoute = require('./routes/registerRoute')
 
 const app = express()
@@ -34,9 +33,8 @@ app.use('/login',        loginRoute)
 app.use('/register',     registerRoute)
 app.use('/upload',       uploadRoute)
 app.use('/filmovi',      filmoviRoute)
-app.use('/watchMovie',   watchMovieRoute)
 
-app.use(express.static(publicFolderPath))
+app.use(express.static(global.publicFolderPath))
 
 app.get('/', (req, res) => {
     console.log(req.ip)

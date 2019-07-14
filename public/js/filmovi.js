@@ -63,8 +63,10 @@ async function buildMovieCards(data) {
         }
 
         movieCardsArr[index].querySelector('.trailer').href = value.trailerLink
+        // movieCardsArr[index].querySelector('.watch-here').href = 
+        //     `${window.location.href}/${value.hashName}?movie=${value.movieName}`
         movieCardsArr[index].querySelector('.watch-here').href = 
-            `${window.location.href}/${value.hashName}?movie=${value.movieName}`
+            `${window.location.href}/gledaj/?movieHash=${value.hashName}&movie=${value.movieName}`
     })
 
     // Dodaj sve te kreirane kartice u glavni element za prikaz (.movies-display)
@@ -92,7 +94,6 @@ async function fetchNBuild() {
 }
 
 // **************************** IZVRSAVANJE KODA ****************************
-
 let isPressed = false
 window.onload = async () => {
     await fetchNBuild()

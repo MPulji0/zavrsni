@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const fs = require('fs')
+const mime = require('mime')
 
 const moviesModel = require('../models/moviesModel')
 const router = express.Router()
@@ -8,8 +9,8 @@ const router = express.Router()
 const filmoviPath = path.join(__dirname, '..', 'filmovi')
 
 router.get('/', (req, res) => {
-	const filmoviPath = path.join(global.publicFolderPath, 'filmovi.html')
-    return res.status(200).sendFile(filmoviPath)
+	const filmovi = path.join(global.publicFolderPath, 'filmovi.html')
+    return res.status(200).sendFile(filmovi)
 })
 
 // Ova ruta se koristi za dohvatiti sve filmove iz baze podataka koji ce posluziti
@@ -42,13 +43,20 @@ router.get('/data', async (req, res) => {
     return res.json(data)
 })
 
-router.get('/:hash', (req, res) => {
-    const filePath = path.join(filmoviPath, 
-        `${req.params.hash}`, `${req.query.movie}`)
+// Koristi se da posluzi gledajFilm.html file
+router.get('/gledaj', (req, res) => {
+    // const gledajPath = path.join(global.publicFolderPath, 'gledajFilm.html')
+    return res.status(200).sendFile('gledajFilm.html', { root: global.publicFolderPath })
+})
+
+// Koristi se za prijenos stream-a
+router.get('/gledaj/:hash', (req, res) => {
+    const movieFolderPath = path.join(filmoviPath, req.params.hash)
+    const movieFilePath = path.join(movieFolderPath, req.query.movie)
     let stat = undefined
     
     try {
-        stat = fs.statSync(filePath)
+        stat = fs.statSync(movieFilePath)
     } catch(err) {
         console.error(err)
         return res.redirect('/?stream=Failed')
@@ -74,18 +82,51 @@ router.get('/:hash', (req, res) => {
         }
 
         res.writeHead(206,head)
-        const src = fs.createReadStream(filePath, {start, end})
+        const src = fs.createReadStream(movieFilePath, {start, end})
         src.pipe(res)
     } else {
-        const head = {
+        let head = {
             'Content-Length': fileSize,
             'Content-Type': 'video/mp4'
         }
         res.writeHead(200,head)
-        const src = fs.createReadStream(filePath)
+        const src = fs.createReadStream(movieFilePath)
         src.pipe(res)
-        
     }
+})
+
+// Ruta za titlove filma ako postoje
+router.get('/gledaj/subs/:hash', (req, res) => {
+    const movieFolderPath = path.join(filmoviPath, req.params.hash)
+    const movieFilePath = path.join(movieFolderPath, req.query.movie)
+    let subtitleFilePath = undefined
+
+    // Procitaj file-ove u movieFolder direktoriju da vidimo postoji li za
+    // ovaj film prijevod. Ako postoji, koristimo ga za slanje korisniku.
+    const filesInDir = fs.readdirSync(movieFolderPath)
+
+    const subsResult = filesInDir.filter(el => {
+        const ext = path.extname(el)
+        if (ext === '.txt' || ext === '.srt' || ext === '.vtt') return true
+        return false
+    })
+
+    // Ako je pronaden prijevod
+    if (subsResult.length > 0) {
+        // Ako ima i vise prijevoda, uzmi samo prvi.
+        const subtitleName = subsResult[0]
+        subtitleFilePath = path.join(movieFolderPath, subtitleName)
+    }
+
+    // Ako je pronaden prijevod, posalji ga
+    if (!!subtitleFilePath) {
+        const head = {
+            'Content-Type': mime.getType(path.extname(subtitleFilePath))
+        }
+        res.header(head)
+        return res.download(subtitleFilePath)
+    }
+    return res.status(404).json('failed')
 })
 
 module.exports = router

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Movie</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <video id="videoPlayer" controls preload="metadata" >
+        <source 
+        src="" 
+        type="video/mp4"/>
+        
+        <track label="English" kind="subtitles" src="" default/>
+    </video>
+    
+    <script>
+        const videoObj = document.querySelector('#videoPlayer')
+        const sourceObj = videoObj.querySelector('source')
+        const trackObj = videoObj.querySelector('track')
+        
+        // Koristimo za pronalazenje queryStringa u URL-u.
+        const urlQuery = new URLSearchParams(window.location.search)
+        const movieHash = urlQuery.get('movieHash')
+        const movieName = urlQuery.get('movie')
+        
+        let position = window.location.href.indexOf('/?')
+        
+        // URL bez query stringa
+        const baseUrl = window.location.href.slice(0, position + 1)
+        // URL filma na serveru
+        const movieUrl = `${baseUrl}${movieHash}/?movie=${movieName}`
+        // Umecemo putanju /subs tako
+        // da browser skine i titlove za taj film
+        const movieSubsUrl = `${baseUrl}subs/${movieHash}/?movie=${movieName}`
+
+        sourceObj.src = movieUrl
+        trackObj.src = movieSubsUrl
+
+    </script>
+</body>
+</html>

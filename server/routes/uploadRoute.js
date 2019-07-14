@@ -35,12 +35,17 @@ router.post('/', async (req, res) => {
     if (!req.files) return res.redirect('/?file=None')
 
     categories = categories.split(' ')
-    const { movieFile, movieImage } = req.files
+    const { movieFile, movieImage, movieSubs } = req.files
 
     // Ime novog foldera za film
     const newMovieFolder = path.join(filmoviPath, movieFile.md5)
 
-    // Ako folder (film) vec ne postoji, kreiraj folder unutar foldera filmovi
+    // Ako ne postoji folder filmovi, kreiraj ga.
+    // Ovaj uvjet ce se samo prvi put izvrsiti kada se stvori projekt.
+    if (!fs.existsSync(filmoviPath)) {
+        fs.mkdirSync(filmoviPath)
+    }
+    // Ako folder (film) ne postoji, kreiraj folder unutar foldera filmovi
     if (!fs.existsSync(newMovieFolder)) {
         fs.mkdirSync(newMovieFolder)
     }
@@ -48,8 +53,16 @@ router.post('/', async (req, res) => {
     let saveRes = saveFileToServer(path.join(newMovieFolder, movieFile.name), movieFile)
     console.log(saveRes)
     if (!saveRes) return res.redirect('/?movUpload=Failed')
+
     saveRes = saveFileToServer(path.join(newMovieFolder, movieImage.name), movieImage)
     if (!saveRes) return res.redirect('/?imgUpload=Failed')
+
+    const subtitleNewName = `${movieFile.name}${path.extname(movieSubs.name)}`
+    console.log('Sub name:')
+    console.log(subtitleNewName)
+    saveRes = saveFileToServer(path.join(newMovieFolder, subtitleNewName), movieSubs)
+    if (!saveRes) return res.redirect('/?subUpload=Failed')
+
 
     // Spremanje podataka o filmu u bazu podataka
     const newMovie = new moviesModel({
