@@ -122,6 +122,12 @@ async function buildSlideShowCards() {
     itemsArr[index].querySelector('.carousel-caption')
     .innerHTML = value.hrvName
 
+
+    // Svaka slika ima na sebi a href element
+    // Ako se klikne na sliku na naslovnoj stranici
+    // odmah direktno vodi na film koji se nalazi na serveru.
+    itemsArr[index].querySelector('a').href = value.linkToMovie
+
   })
   
   console.log(itemsArr)

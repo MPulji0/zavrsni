@@ -7,10 +7,13 @@ const cookieParser = require('cookie-parser')
 const fs = require('fs') // Za file system (citanje i pisanje fileova)
 const fileUpload = require('express-fileupload')
 
+const PORT = 8080
+
 // Globalne varijable
 global.url = 'mongodb://localhost:27017'
 global.publicFolderPath = path.join(__dirname, '../public')
 global.dbName = 'zavrsni'
+global.port = PORT
 
 // Korisnicke biblioteke
 const dbHelper = require('./dbHelper')
@@ -45,4 +48,4 @@ app.post('/signout', (req, res) => {
     return res.clearCookie('uname').status(200).redirect('/')
 })
 
-app.listen(8080, () => console.log('Server is listening on port 8080!'))
+app.listen(PORT, () => console.log(`Server is listening on port ${PORT}!`))

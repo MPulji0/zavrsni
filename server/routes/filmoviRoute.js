@@ -33,6 +33,10 @@ router.get('/data', async (req, res) => {
             
             data[i].imgFile = image.toString('base64')
             data[i].ext = path.extname(data[i].hashImageName)
+
+            // Dodaj link za svaki film
+            data[i].linkToMovie = 
+                `http://${req.headers.host}/filmovi/gledaj/?movieHash=${data[i].hashName}&movie=${data[i].movieName}`
         } catch(err) {
             console.error(err)
         }
