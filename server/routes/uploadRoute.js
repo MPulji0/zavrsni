@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const fs = require('fs')
+// Sluzi za pretvorbu prijevoda u format koji odgovara webu
 const srt2vtt = require('srt-to-vtt')
 
 const moviesModel = require('../models/moviesModel')
@@ -93,7 +94,7 @@ router.post('/', async (req, res) => {
         description,
         trailerLink
     })
-    
+
     let result = undefined
     try {
         result = await newMovie.save()

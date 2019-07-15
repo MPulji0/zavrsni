@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- <link rel="stylesheet" href="./css/uploadMovie.css"> -->
+    <link rel="stylesheet" href="./css/uploadMovie.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
     <title>Upload movie</title>
@@ -16,15 +16,18 @@
             
             <label for="movie-file">Odaberite film</label><br>
             <input type="file" name="movieFile" required
-                accept="video/*" id="movie-file"><br><br>
+                accept="video/*" id="movie-file"
+                onchange="fileChange(event)"><br><br>
     
-            <label for="movie-image">Odaberite titlove za film</label><br>
+            <label for="movie-subs">Odaberite titlove za film</label><br>
             <input type="file" name="movieSubs" required
-                accept=".vtt,.srt,.txt" id="movie-subs"><br><br>
+                accept=".vtt,.srt,.txt" id="movie-subs"
+                onchange="fileChange(event)"><br><br>
     
             <label for="movie-image">Odaberite sliku za film</label><br>
             <input type="file" name="movieImage" required
-                accept="image/*" id="movie-image"><br><br>
+                accept="image/*" id="movie-image"
+                onchange="fileChange(event)"><br><br>
             
             <input type="text" name="hrvName" required
                 placeholder="Hrvatsko ime filma"><br>
@@ -47,5 +50,12 @@
             <input type="submit" value="Uploadaj film">
         </form>
     </div>
+
+    <script>
+        function fileChange(event) {
+            const nameOfFile = event.target.value.slice(event.target.value.lastIndexOf('\\') + 1)
+            event.target.labels[0].innerHTML = nameOfFile
+        }
+    </script>
 </body>
 </html>
