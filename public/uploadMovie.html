@@ -56,39 +56,40 @@
 
     <form action="/upload" method="post" id="upload-form" encType="multipart/form-data">
         
-        <label for="movie-file">Odaberite film</label><br>
+        <label for="movie-file">Odaberite film *</label><br>
         <input type="file" name="movieFile" required
             accept="video/*" id="movie-file"
             onchange="fileChange(event)"><br><br>
 
         <label for="movie-subs">Odaberite titlove za film</label><br>
-        <input type="file" name="movieSubs" required
+        <input type="file" name="movieSubs"
             accept=".vtt,.srt,.txt" id="movie-subs"
             onchange="fileChange(event)"><br><br>
 
-        <label for="movie-image">Odaberite sliku za film</label><br>
+        <label for="movie-image">Odaberite sliku za film *</label><br>
         <input type="file" name="movieImage" required
             accept="image/*" id="movie-image"
             onchange="fileChange(event)"><br><br>
         
         <input type="text" name="hrvName" required
-            placeholder="Hrvatsko ime filma"><br>
+            placeholder="Hrvatsko ime filma *"><br>
 
         <input type="text" name="engName" required
-            placeholder="Englesko ime filma"><br>
+            placeholder="Englesko ime filma *"><br>
 
         <input type="text" name="categories" required
-            placeholder="Kategorije filma"><br>
+            placeholder="Kategorije filma *"><br>
 
         <input type="text" name="year" required
-            placeholder="Godina filma"><br>
+            placeholder="Godina filma *"><br>
 
         <input type="text" name="description" required
-            placeholder="Opis filma"><br>
+            placeholder="Opis filma *"><br>
 
         <input type="url" name="trailerLink" required
-            placeholder="Trailer link za film"><br>
+            placeholder="Trailer link za film *"><br>
         
+        <span style="color: white; font-weight: bold;">* oznacava obavezna polja</span>
         <input type="submit" value="Uploadaj film">
     </form>
 
