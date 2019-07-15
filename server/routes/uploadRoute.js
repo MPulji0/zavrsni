@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const fs = require('fs')
+const srt2vtt = require('srt-to-vtt')
 
 const moviesModel = require('../models/moviesModel')
 const router = express.Router()
@@ -58,10 +59,25 @@ router.post('/', async (req, res) => {
     if (!saveRes) return res.redirect('/?imgUpload=Failed')
 
     const subtitleNewName = `${movieFile.name}${path.extname(movieSubs.name)}`
-    console.log('Sub name:')
-    console.log(subtitleNewName)
-    saveRes = saveFileToServer(path.join(newMovieFolder, subtitleNewName), movieSubs)
+    const subPath = path.join(newMovieFolder, subtitleNewName)
+    saveRes = saveFileToServer(subPath, movieSubs)
     if (!saveRes) return res.redirect('/?subUpload=Failed')
+
+    // Konverzija .srt file-a u .vtt file, jer je samo u tom formatu podrzan web prijevod
+    if (path.extname(subtitleNewName) === '.srt') {
+        const newSubPath = path.join(newMovieFolder, `${movieFile.name}.vtt`)
+        fs.createReadStream(subPath)
+        .pipe(srt2vtt())
+        .pipe(fs.createWriteStream(newSubPath))
+
+        // Izbrisi .srt file
+        fs.unlink(subPath, err => {
+            if(err) {
+                console.error('Failed to delete .srt file! Error msg:')
+                console.error(err)
+            }
+        })
+    }
 
 
     // Spremanje podataka o filmu u bazu podataka

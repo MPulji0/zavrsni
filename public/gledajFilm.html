@@ -14,12 +14,10 @@
     </style>
 </head>
 <body>
-    <video id="videoPlayer" controls preload="metadata" >
-        <source 
-        src="" 
-        type="video/mp4"/>
-        
-        <track label="English" kind="subtitles" src="" default/>
+
+    <video id="videoPlayer" controls preload="metadata" autoplay>
+        <source src="" type="video/mp4"/>
+        <track label="English" kind="captions" src="" default/>
     </video>
     
     <script>
@@ -46,5 +44,6 @@
         trackObj.src = movieSubsUrl
 
     </script>
+
 </body>
 </html>
