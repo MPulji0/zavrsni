@@ -69,7 +69,48 @@
               </div>
           </div>
         </section>
+      </div>
+
+      <div class="loginPanel loginNSignupContainer" style="display: none">
+          <!-- <img src="" alt=""> -->
+          <div class="nesto"></div>
+          <div class="exitBtn" onclick="closeBtnFunc()">
+            X
+          </div>
+          <div class="loginForm">
+            <form action="/login" method="POST">
+              <input type="text" name="username" placeholder="Enter username" required /><br>
+              <input type="password" name="password" placeholder="Enter password" required /><br>
+              <input type="submit" value="Login" /><br>
+            </form>
+          </div>
+    
+          <span style="color:white">Registriraj se</span> 
+          <a onclick="signUpPanelFunc()" id="regBtn" style="cursor: pointer; text-decoration: none;">
+            ovdje
+          </a>
+          <span style="color:white">ako nemaš račun</span>
         </div>
+
+        
+        <div class="signupPanel loginNSignupContainer" style="display: none">
+            <!-- <img src="" alt=""> -->
+            <div class="exitBtn" onclick="closeBtnFunc()">
+              X
+            </div>
+            <div class="signupForm">
+              <form action="/register" method="POST">
+                <input type="text" name="firstname" placeholder="Enter your first name" required /><br>
+                <input type="text" name="lastname" placeholder="Enter your last name" required /><br>
+                <input type="email" name="email" placeholder="Enter email" required /><br>
+                <input type="text" name="age" placeholder="Enter your age" required /><br>
+                <input type="text" name="username" placeholder="Enter username" required /><br>
+                <input type="password" name="password" placeholder="Enter password" required /><br>
+                <input type="submit" value="Sign up" /><br>
+              </form>
+            </div>
+          </div> 
+
   <script src="js/utils.js"></script>
   <script src="js/filmovi.js"></script>
   <script src="js/script.js"></script>

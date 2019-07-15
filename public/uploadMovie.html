@@ -5,51 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./css/uploadMovie.css">
+    <link rel="stylesheet" href="css/main.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
     <title>Upload movie</title>
 </head>
 <body>
-    <div class="test">
 
-        <form action="/upload" method="post" id="upload-form" encType="multipart/form-data">
-            
-            <label for="movie-file">Odaberite film</label><br>
-            <input type="file" name="movieFile" required
-                accept="video/*" id="movie-file"
-                onchange="fileChange(event)"><br><br>
-    
-            <label for="movie-subs">Odaberite titlove za film</label><br>
-            <input type="file" name="movieSubs" required
-                accept=".vtt,.srt,.txt" id="movie-subs"
-                onchange="fileChange(event)"><br><br>
-    
-            <label for="movie-image">Odaberite sliku za film</label><br>
-            <input type="file" name="movieImage" required
-                accept="image/*" id="movie-image"
-                onchange="fileChange(event)"><br><br>
-            
-            <input type="text" name="hrvName" required
-                placeholder="Hrvatsko ime filma"><br>
-    
-            <input type="text" name="engName" required
-                placeholder="Englesko ime filma"><br>
-    
-            <input type="text" name="categories" required
-                placeholder="Kategorije filma"><br>
-    
-            <input type="text" name="year" required
-                placeholder="Godina filma"><br>
-    
-            <input type="text" name="description" required
-                placeholder="Opis filma"><br>
-    
-            <input type="url" name="trailerLink" required
-                placeholder="Trailer link za film"><br>
-            
-            <input type="submit" value="Uploadaj film">
-        </form>
-    </div>
+    <section id="navigation-bar">    
+
+        <nav class="navbar navbar-inverse">
+
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#"></a>
+            </div>
+            <ul class="nav navbar-nav">
+              <li class="active"><a data-toggle="tab" href="#home" onclick="pocetnaMenu()">POČETNA</a></li>
+              <li><a data-toggle="tab" href="#menu1" id="filmovi" onclick="filmoviMenu()">FILMOVI</a></li>
+              <li><a data-toggle="tab" href="#menu2" onclick="uploadMenu()">UPLOADAJ</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" action="/action_page.php">
+              <div class="input-group">
+                <input type="text" id="myInput" class="form-control" placeholder="Traži film.." name="search">
+                <div class="input-group-btn">
+                  <button class="btn btn-default" type="submit">
+                    <i class="glyphicon glyphicon-search"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+            <div class="login-div">
+              <a onclick="loginPanelFunc()" id="loginBtn">LOGIN</a>
+            </div>
+            <div class="signout-div">
+              <form action="/signout" method="post">
+                <input type="submit" id="signoutBtn" value="SIGN OUT"
+                style="border: none; background-color: darkslategray;"></input>
+              </form>
+            </div>
+          </div>
+        
+        </nav>
+
+    </section>
+
+
+    <form action="/upload" method="post" id="upload-form" encType="multipart/form-data">
+        
+        <label for="movie-file">Odaberite film</label><br>
+        <input type="file" name="movieFile" required
+            accept="video/*" id="movie-file"
+            onchange="fileChange(event)"><br><br>
+
+        <label for="movie-subs">Odaberite titlove za film</label><br>
+        <input type="file" name="movieSubs" required
+            accept=".vtt,.srt,.txt" id="movie-subs"
+            onchange="fileChange(event)"><br><br>
+
+        <label for="movie-image">Odaberite sliku za film</label><br>
+        <input type="file" name="movieImage" required
+            accept="image/*" id="movie-image"
+            onchange="fileChange(event)"><br><br>
+        
+        <input type="text" name="hrvName" required
+            placeholder="Hrvatsko ime filma"><br>
+
+        <input type="text" name="engName" required
+            placeholder="Englesko ime filma"><br>
+
+        <input type="text" name="categories" required
+            placeholder="Kategorije filma"><br>
+
+        <input type="text" name="year" required
+            placeholder="Godina filma"><br>
+
+        <input type="text" name="description" required
+            placeholder="Opis filma"><br>
+
+        <input type="url" name="trailerLink" required
+            placeholder="Trailer link za film"><br>
+        
+        <input type="submit" value="Uploadaj film">
+    </form>
 
     <script>
         function fileChange(event) {
@@ -57,5 +98,6 @@
             event.target.labels[0].innerHTML = nameOfFile
         }
     </script>
+    <script src="./js/utils.js"></script>
 </body>
 </html>
