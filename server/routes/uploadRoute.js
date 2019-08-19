@@ -39,6 +39,7 @@ router.post('/', async (req, res) => {
     categories = categories.split(' ')
     const { movieFile, movieImage, movieSubs } = req.files
 
+
     // Ime novog foldera za film
     const newMovieFolder = path.join(filmoviPath, movieFile.md5)
 
@@ -59,25 +60,30 @@ router.post('/', async (req, res) => {
     saveRes = saveFileToServer(path.join(newMovieFolder, movieImage.name), movieImage)
     if (!saveRes) return res.redirect('/?imgUpload=Failed')
 
-    const subtitleNewName = `${movieFile.name}${path.extname(movieSubs.name)}`
-    const subPath = path.join(newMovieFolder, subtitleNewName)
-    saveRes = saveFileToServer(subPath, movieSubs)
-    if (!saveRes) return res.redirect('/?subUpload=Failed')
+    let subtitleNewName = undefined
+    let subPath = undefined
+    // Ako postoje titlovi spremi ih na server i promjeni im format u .vtt (web format)
+    if (!!movieSubs) {
+        subtitleNewName = `${movieFile.name}${path.extname(movieSubs.name)}`
+        subPath = path.join(newMovieFolder, subtitleNewName)
+        saveRes = saveFileToServer(subPath, movieSubs)
+        if (!saveRes) return res.redirect('/?subUpload=Failed')
 
-    // Konverzija .srt file-a u .vtt file, jer je samo u tom formatu podrzan web prijevod
-    if (path.extname(subtitleNewName) === '.srt') {
-        const newSubPath = path.join(newMovieFolder, `${movieFile.name}.vtt`)
-        fs.createReadStream(subPath)
-        .pipe(srt2vtt())
-        .pipe(fs.createWriteStream(newSubPath))
+        // Konverzija .srt file-a u .vtt file, jer je samo u tom formatu podrzan web prijevod
+        if (path.extname(subtitleNewName) === '.srt') {
+            const newSubPath = path.join(newMovieFolder, `${movieFile.name}.vtt`)
+            fs.createReadStream(subPath)
+            .pipe(srt2vtt())
+            .pipe(fs.createWriteStream(newSubPath))
 
-        // Izbrisi .srt file
-        fs.unlink(subPath, err => {
-            if(err) {
-                console.error('Failed to delete .srt file! Error msg:')
-                console.error(err)
-            }
-        })
+            // Izbrisi .srt file
+            fs.unlink(subPath, err => {
+                if(err) {
+                    console.error('Failed to delete .srt file! Error msg:')
+                    console.error(err)
+                }
+            })
+        }
     }
 
 
