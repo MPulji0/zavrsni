@@ -1,0 +1,160 @@
+#logo-img{
+    width: 200px; position: absolute; left:-60px; top: -4em; z-index: 5;
+}
+
+#navigation-bar{
+    position:sticky;
+    top:0;
+    z-index:10;
+    padding: 25px;
+    background-color: #18191a;
+  }
+
+#navigation-bar ul{
+  padding-left: 100px;
+}
+
+.navbar li a {
+  color: #FF9300;
+  font-weight: 600;
+}
+
+
+.login-div a{
+    float:right;
+    padding-top: 15px;
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+   color:  #FF9300;
+   font-weight: 600;
+  }
+  
+  .login-div a:hover {
+    color:  white;
+    text-decoration: none;
+  }
+  
+  .loginNSignupContainer {
+    display: block;
+    border: 1px solid black;
+    height: auto;
+    width: 50%;
+    position: absolute;
+    top: 100px;
+    left: 25%;
+    padding-bottom: 20px;
+    text-align: center;
+    background-color: #18191a;
+    border-radius: 25px;
+    z-index: 10;
+  }
+  
+  .loginNSignupContainer form{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    z-index: 2;
+  }
+  
+  .loginNSignupContainer form input {
+    padding: 10px;
+    margin: 10px;
+  }
+  
+  .loginNSignupContainer form input[type="submit"] {
+    padding: 10px;
+    margin: 10px;
+    outline: none;
+    border: none;
+    border-radius: 15px;
+    transition: all 0.5s;
+    background-color: white;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  
+  .loginNSignupContainer form input[type="submit"]:hover {
+    background-color: #FF9300;
+    color: white;
+  }
+  
+  
+  .loginNSignupContainer form input[type="text"], input[type="email"], input[type="password"] {
+    outline: none;
+    border: none;
+    background: transparent;
+    color: white;
+    border-bottom: 2px solid #FF9300;
+    border-radius: 15px;
+    transition: all 0.5s;
+    color: #FF9300;
+    font-weight: bold;
+  }
+  
+  .loginNSignupContainer form input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+    width: 270px;
+  }
+  
+  
+  .loginNSignupContainer form input::placeholder {
+    color: white;
+  }
+  
+  .loginNSignupContainer .exitBtn {
+    color: white;
+    font-size: 28px;
+    float: right;
+    position: relative;
+    color: #FF9300;
+    border-radius: 100%;
+    padding: 0 6px;
+    font-weight: bolder;
+    cursor: pointer;
+  }
+
+  .loginNSignupContainer .exitBtn:hover{
+      color: white;
+  }
+  
+  .signupForm {
+    padding-top: -200px;
+  }
+  
+  #regBtn {
+    /* color:white; */
+    font-size: 15px;
+    font-weight: bold;
+  }
+  
+  .signout-div{
+    padding-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: white;
+  }
+  
+  .signout-div form{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center !important;
+  
+  }
+  
+  .signout-div input{
+    float:right;
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    color:  #FF9300;
+    background: none;
+    border: none;
+    font-weight: 600;
+    margin-left: 20px;
+  }
+  
+  .signout-div input:hover{
+    color: white;
+  }

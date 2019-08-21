@@ -6,17 +6,10 @@
 
 body{
     font-family: sans-serif;
-
+    background-color: #18191a !important;
 }
 
-#navigation-bar{
-    position:sticky;
-    top:0;
-    z-index:10;}
-
 .carousel-inner img {
-  -webkit-filter: grayscale(90%);
-  filter: grayscale(90%); /* make all photos black and white */ 
   min-height: 600px; /* Set width to 100% */
   max-height: 600px;
   margin: auto;
@@ -46,114 +39,86 @@ body{
     margin-top:0;
 }
 
-.login-div a{
-  float:right;
-  padding-top: 15px;
-  color: grey;
-  font-size: 15px;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
+/************** CSS ZA NOVI CAROUSEL ****************/
+
+#banner{
+    color:#fff;
+    padding-top:100px;
+    padding-bottom: 100px;
+    background-color: #18191a;
 }
 
-.login-div a:hover {
-  color: white;
-  text-decoration: none;
+.p-title{
+    font-size:27px;
+    font-weight: 600;
+    margin-top:50px;
 }
 
-.loginNSignupContainer {
-  display: block;
-  border: 1px solid black;
-  height: 60%;
-  width: 40%;
-  position: absolute;
-  top: 100px;
-  left: 600px;
-  padding-bottom: 20px;
-  text-align: center;
-  background-color: rgba(20, 20, 20, 0.8);
+.slide-1,.slide-2,.slide-3{
+    
+    display: block;
+    position: absolute;
+    width:50%;
+    
 }
 
-.loginNSignupContainer form{
-  padding-top: 100px;
-  z-index: 2;
+.slide-1{
+    animation:fade1 10s infinite;
+}
+.slide-2{
+    animation:fade2 10s infinite;
+}
+.slide-3{
+    animation:fade3 10s infinite;
 }
 
-.loginNSignupContainer form input {
-  padding: 10px;
-  margin: 10px;
+@keyframes fade1{
+    0%{opacity: 1;}
+    25%{opacity: 0;}
+    50%{opacity: 0;}
+    75%{opacity: 0;}
+    100%{opacity: 1;}
 }
 
-.loginNSignupContainer form input[type="submit"] {
-  padding: 10px;
-  margin: 10px;
-  outline: none;
-  border: none;
-  border-radius: 15px;
-  transition: all 0.5s;
+@keyframes fade2{
+    0%{opacity: 0;}
+    25%{opacity: 1;}
+    50%{opacity: 0;}
+    75%{opacity: 0;}
+    100%{opacity: 0;}
 }
 
-.loginNSignupContainer form input[type="submit"]:hover {
-  width: 70px;
-  transform: rotateZ(-40deg);
-}
-
-
-.loginNSignupContainer form input[type="text"], input[type="email"], input[type="password"] {
-  outline: none;
-  border: none;
-  background: transparent;
-  color: white;
-  border-bottom: 2px solid rgb(163, 31, 31);
-  border-radius: 15px;
-  transition: all 0.5s;
-  color: orange;
-  font-weight: bold;
-}
-
-.loginNSignupContainer form input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
-  width: 270px;
+@keyframes fade3{
+    0%{opacity: 0;}
+    25%{opacity: 0;}
+    50%{opacity: 1;}
+    75%{opacity: 0;}
+    100%{opacity: 0;}
 }
 
 
-.loginNSignupContainer form input::placeholder {
-  color: white;
+/***************************************************/
+
+/*******************contact**************************/
+#contact{
+  background:#f8f9fa;
+  padding: 250px 0 50px 0;
+
 }
 
-.loginNSignupContainer .exitBtn {
-  color: white;
-  font-size: 28px;
-  float: right;
-  position: relative;
-  color: rgb(163, 31, 31);
-  border-radius: 100%;
-  padding: 0 6px;
-  font-weight: bolder;
-  cursor: pointer;
-  transition: all 0.5s;
+#contact p{
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 30px;
 }
 
-.loginNSignupContainer .exitBtn:hover {
-  transform: rotateZ(-40deg);
+.social-icons img{
+  width:60px;
+  transition: 0.5s;
+
 }
 
+.social-icons a:hover img{
+  transform: translateY(-10px);
 
-.signupForm {
-  padding-top: -200px;
-}
-
-#regBtn {
-  /* color:white; */
-  font-size: 15px;
-  font-weight: bold;
-}
-
-.signout-div input{
-  float:right;
-  padding-top: 15px;
-  color: grey;
-  font-size: 15px;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
 }

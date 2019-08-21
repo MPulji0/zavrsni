@@ -5,17 +5,28 @@
     flex-wrap: wrap;
     flex-direction: row;
     /* align-items: center; */
+    width: 90%;
+    margin: auto;
+}
+.movie-container .row{
+    margin-right: 0;
 }
 .card-movie {
     border: 1px solid black;
     border-radius: 5px;
     flex-grow: 1;
-    flex-basis: 26%;
+    flex-basis: 15%;
     /* flex: 2 1 26%; explanation below */
-    margin: 5px;
-    background-color: lightgrey;
+    margin: 10px;
+    background-color: white;
     text-align: center;
     font-size: 1.2em;
+    padding: 0 3px;
+    padding-bottom: 10px;
+}
+
+.card-movie h3{
+    font-weight: 600;
 }
 
 .movie-img {
@@ -34,11 +45,10 @@
     display: none;
 }
 
-.watch-here {
-    color: black;
+.title1 {
+    color: white;
 }
 
-.title1 {
-    font-family: 'Permanent Marker', cursive;
-font-family: 'Rock Salt', cursive;
+a{
+    color: #FF9300 !important;
 }

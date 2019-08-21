@@ -1,7 +1,8 @@
 body{
     font-family: 'Roboto', sans-serif;
-    background: url('../img/Widescreen-Image.jpg');
+    background: url('../img/slika.jpg') no-repeat center center fixed;
     background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #upload-form {
@@ -15,7 +16,7 @@ body{
     margin: 5px;
     font-size: 15px;
     border: none;
-    border-bottom: 2px solid rgb(163, 31, 31);
+    border-bottom: 2px solid #FF9300;
     border-radius: 5px;
 }
 
@@ -28,13 +29,18 @@ body{
     z-index: -1;
 }
 
-label{
+label, .uploadMovieBtn{
     font-size: 1.2em;
     font-weight: 700;
     color: white;
-    background-color: rgb(224, 34, 34);
+    background-color: #FF9300;
     display: inline-block;
-    outline: 2px solid white;
     padding: 5px;
     cursor: pointer;
+    border-radius: 5px;
+}
+
+label:hover, .uploadMovieBtn:hover{
+    background-color: white;
+    color: #FF9300;
 }

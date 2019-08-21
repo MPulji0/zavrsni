@@ -61,10 +61,12 @@ if (result > -1) {
 
   loginDiv.style.display = "none"
   const signoutDiv = document.querySelector('.signout-div')
-  const signoutBtn = document.querySelector('#signoutBtn')
+//   const signoutBtn = document.querySelector('#signoutBtn')
+    const usernameSpan = document.querySelector('#username')
 
-  signoutBtn.value = username
-  signoutDiv.style.display = "block"
+//   signoutBtn.value = username
+usernameSpan.innerHTML = username
+  signoutDiv.style.display = "flex"
 }
 
 if (result === -1) {

@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/navigation.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -13,21 +14,20 @@
 
   
 <section id="navigation-bar">    
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-light bg-light ">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">
-          <img src="filmIcon.png" id='logo-img' style="width: 7%; position: absolute; left:-30px; top: -15px; z-index: 5;"/>
-         
+          <img src="filmIcon.png" id='logo-img'/>         
       </a>
     </div>
     <ul class="nav navbar-nav">
       
-      <li class="active"><a data-toggle="tab" href="#home" onclick="pocetnaMenu()">POČETNA</a></li>
+      <li class="active" ><a data-toggle="tab" href="#home" onclick="pocetnaMenu()">POČETNA</a></li>
       <li><a data-toggle="tab" href="#menu1" id="filmovi" onclick="filmoviMenu()">FILMOVI</a></li>
       <li><a data-toggle="tab" href="#menu2" onclick="uploadMenu()">UPLOADAJ</a></li>
     </ul>
-    <form class="navbar-form navbar-left" action="/action_page.php">
+    <form id="movieSearchbar" class="navbar-form navbar-left" action="/action_page.php">
       <div class="input-group">
         <input type="text" id="myInput" class="form-control" placeholder="Traži film.." name="search">
         <div class="input-group-btn">
@@ -41,9 +41,10 @@
       <a onclick="loginPanelFunc()" id="loginBtn">LOGIN</a>
     </div>
     <div class="signout-div">
-      <form action="/signout" method="post">
-        <input type="submit" id="signoutBtn" value=""
-        style="border: none; background-color: darkslategray;"></input>
+      <form action="/signout" method="post">  
+        <span id="username"></span>      
+        <input type="submit" id="signoutBtn" value="LOGOUT"></input>
+        
       </form>
     </div>
   </div>
@@ -52,13 +53,13 @@
 
 <!--Početna-->
 <div id="home" class="tab-pane fade in active">
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
+    <!-- <div id="myCarousel" class="carousel slide" data-ride="carousel">
+       
         <ol class="carousel-indicators">
           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         </ol>
     
-        <!-- Wrapper for slides -->
+        
         <div class="carousel-inner" role="listbox">
           <div class="item">
             <a href=""><img src="" ></a>
@@ -68,7 +69,7 @@
           </div>
         </div>
     
-        <!-- Left and right controls -->
+        
         <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
           <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
@@ -77,7 +78,25 @@
           <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
-    </div>
+    </div> -->
+
+    <section id="banner">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-6">
+                  <p class="p-title">Najbolja stranica za online gledanje filmova</p>
+                  <p>Dobrodošli na našu stranicu. Nadamo se da će Vam se svidjeti.
+                       Gledajte online filmove s prijevodom, potpuno besplatno. Uživajte!</p>
+              </div>
+              <div class="col-md-6">
+                      <img src="./img/1.jpg" class="slide-1">
+                      <img src="./img/2.jpg" class="slide-2">
+                      <img src="./img/3.jpg" class="slide-3">
+              </div>
+          </div>
+      </div>
+      
+  </section>
     
     <div class="loginPanel loginNSignupContainer" style="display: none">
       <!-- <img src="" alt=""> -->
@@ -117,6 +136,18 @@
           </form>
         </div>
       </div>    
+</section>
+<section id="contact">
+  <div class="container text-center">
+      <p>POTRAŽI NAS NA DRUŠTVENIM MREŽAMA</p>
+      <div class="social-icons">
+          <a href="#"><img src="img/fb.png"></a>
+          <a href="#"><img src="img/inst.jpeg"></a>
+          <a href="#"><img src="img/tw.png"></a>
+
+      </div>
+
+  </div>
 </section>
 
 </div>
