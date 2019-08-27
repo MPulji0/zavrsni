@@ -22,6 +22,12 @@
     background-color: white;
     text-align: center;
     font-size: 1.2em;
+
+    transition: transform 0.33s;
+}
+
+.card-movie:hover {
+    transform: scale(1.1);
 }
 
 .card-movie h3{
