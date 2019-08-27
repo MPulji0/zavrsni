@@ -1,10 +1,10 @@
 
 .movies-display {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    align-content: stretch;
     flex-wrap: wrap;
     flex-direction: row;
-    /* align-items: center; */
     width: 90%;
     margin: auto;
 }
@@ -16,16 +16,12 @@
 .card-movie {
     border: 1px solid black;
     border-radius: 5px;
-    flex-grow: 1;
     flex-basis: 15%;
     flex-grow: 0;
-    /* flex: 21 26%; explanation below */
     margin: 10px;
     background-color: white;
     text-align: center;
     font-size: 1.2em;
-    padding: 0 10px;
-    padding-bottom: 10px;
 }
 
 .card-movie h3{

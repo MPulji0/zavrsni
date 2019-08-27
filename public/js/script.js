@@ -120,7 +120,6 @@ function checkStatus() {
   // location.search nam vraca query string, dio URL-a
   const queryStringParams = new URLSearchParams(location.search)
   let isFailed = queryStringParams.has('failed')
-  console.log(isFailed)
   if (isFailed) alert('Prijava u sustav nije uspjela.')
 
   isFailed = queryStringParams.get('upload')
