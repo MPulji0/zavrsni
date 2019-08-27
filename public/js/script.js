@@ -128,6 +128,9 @@ function checkStatus() {
 
   isFailed = queryStringParams.get('dbUpload')
   if (isFailed === 'Failed') alert('Dogodila se pogreska na serveru.\nUpload nije uspio.')
+
+  isFailed = queryStringParams.has('movieNotFound')
+  if (isFailed) alert('Nijedan film nije pronaden!')
 }
 
 /**

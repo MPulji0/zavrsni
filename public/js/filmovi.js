@@ -42,8 +42,9 @@ async function buildMovieCards(data) {
     data.forEach((value, index) => {
         movieCardsArr[index].querySelector('h3').innerText = value.hrvName
         movieCardsArr[index].querySelector('h4').innerText = value.engName
+        console.log(value.categories)
         movieCardsArr[index].querySelector('.movie-info').innerText = 
-            `${value.length} | ${value.categories.join(', ')}`
+            `Kategorije: ${value.categories.join(' ')}`
         
         movieCardsArr[index].querySelector('.movie-img').src = `data:image/${value.ext};base64,${value.imgFile}`
         if (value.description.split(' ').length > MAX_WORDS_COUNT) {

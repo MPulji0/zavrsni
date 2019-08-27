@@ -95,7 +95,6 @@ router.post('/', async (req, res) => {
         hrvName,
         engName,
         categories,
-        length: 5,                                              // ****************** TODO ******************
         year,
         description,
         trailerLink

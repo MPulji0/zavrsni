@@ -47,6 +47,27 @@ router.get('/data', async (req, res) => {
     return res.json(data)
 })
 
+router.get('/search', async (req, res) => {
+    // console.log(req)
+    console.log(req.query.search)
+    let result = await moviesModel.findOne({
+        $or: [
+            { hrvName: req.query.search },
+            { engName: req.query.search }
+        ]
+    })
+
+    // Pronaden je film. Zapocni reprodukciju.
+    if (!!result) {
+        return res.status(200)
+        .redirect(
+            `/filmovi/gledaj/?movieHash=${result.hashName}&movie=${result.movieName}`
+            )
+    } else {
+        return res.status(200).redirect('/?movieNotFound')
+    }
+})
+
 // Koristi se da posluzi gledajFilm.html file
 router.get('/gledaj', (req, res) => {
     // const gledajPath = path.join(global.publicFolderPath, 'gledajFilm.html')
