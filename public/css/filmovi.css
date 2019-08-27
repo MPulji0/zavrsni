@@ -8,20 +8,23 @@
     width: 90%;
     margin: auto;
 }
+
 .movie-container .row{
     margin-right: 0;
 }
+
 .card-movie {
     border: 1px solid black;
     border-radius: 5px;
     flex-grow: 1;
     flex-basis: 15%;
-    /* flex: 2 1 26%; explanation below */
+    flex-grow: 0;
+    /* flex: 21 26%; explanation below */
     margin: 10px;
     background-color: white;
     text-align: center;
     font-size: 1.2em;
-    padding: 0 3px;
+    padding: 0 10px;
     padding-bottom: 10px;
 }
 
