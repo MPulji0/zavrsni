@@ -52,8 +52,8 @@ router.get('/search', async (req, res) => {
     console.log(req.query.search)
     let result = await moviesModel.findOne({
         $or: [
-            { hrvName: req.query.search },
-            { engName: req.query.search }
+            { hrvName: { $regex: `.*${req.query.search}.*` }},
+            { engName: { $regex: `.*${req.query.search}.*` }}
         ]
     })
 
