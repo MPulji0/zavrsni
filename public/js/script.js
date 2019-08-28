@@ -115,6 +115,24 @@ async function buildSlideShowCards() {
   carouselIndicatorsListObj.append(...indicatorsArr)
 }
 
+function checkStatus() {
+  // Ako je neuspjela prijava na server, ili upload ili je film uspjesno uploadan
+  // location.search nam vraca query string, dio URL-a
+  const queryStringParams = new URLSearchParams(location.search)
+  let isFailed = queryStringParams.has('failed')
+  if (isFailed) alert('Prijava u sustav nije uspjela.')
+
+  isFailed = queryStringParams.get('upload')
+  if(isFailed === 'Login-first') alert('Potrebno se prijaviti prije uploada na server.')
+  if (isFailed === 'True') alert('Film je uspjesno uploadan')
+
+  isFailed = queryStringParams.get('dbUpload')
+  if (isFailed === 'Failed') alert('Dogodila se pogreska na serveru.\nUpload nije uspio.')
+
+  isFailed = queryStringParams.has('movieNotFound')
+  if (isFailed) alert('Nijedan film nije pronaden!')
+}
+
 /**
  * Unutar ove funkcije se izvrsava sva logika vezana za ovu skriptu
  */
@@ -130,6 +148,7 @@ async function main() {
   });
 
   await buildSlideShowCards()
+  checkStatus()
 }
 
 // ********************************* IZVRSAVANJE KODA *********************************

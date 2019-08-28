@@ -28,6 +28,7 @@ function readMoreText(event) {
 async function buildMovieCards(data) {
     const movieCardObj = document.querySelector('.card-movie')
     const movieCardsArr = []
+    const MAX_WORDS_COUNT = 20
 
     movieCardsArr.push(movieCardObj)
 
@@ -41,19 +42,20 @@ async function buildMovieCards(data) {
     data.forEach((value, index) => {
         movieCardsArr[index].querySelector('h3').innerText = value.hrvName
         movieCardsArr[index].querySelector('h4').innerText = value.engName
+        console.log(value.categories)
         movieCardsArr[index].querySelector('.movie-info').innerText = 
-            `${value.length} | ${value.categories.join(', ')}`
+            `Kategorije: ${value.categories.join(' ')}`
         
         movieCardsArr[index].querySelector('.movie-img').src = `data:image/${value.ext};base64,${value.imgFile}`
-        if (value.description.split(' ').length > 50) {
+        if (value.description.split(' ').length > MAX_WORDS_COUNT) {
             let words = value.description.split(' ')
-            let lessStr = words.slice(0, 50).join(' ')
+            let lessStr = words.slice(0, MAX_WORDS_COUNT).join(' ')
 
             movieCardsArr[index].children[4].innerText = lessStr
 
             let spanElem = document.createElement('span')
             spanElem.className = 'more'
-            spanElem.innerText = words.slice(50).join(' ')
+            spanElem.innerText = words.slice(MAX_WORDS_COUNT).join(' ')
             
             spanElem.style.display = "none"
             movieCardsArr[index].querySelector('.movie-text').appendChild(spanElem)

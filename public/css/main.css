@@ -39,6 +39,11 @@ body{
     margin-top:0;
 }
 
+#username {
+  font-size: 18px;
+  font-weight: bold;
+}
+
 /************** CSS ZA NOVI CAROUSEL ****************/
 
 #banner{

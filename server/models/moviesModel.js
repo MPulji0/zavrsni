@@ -33,10 +33,6 @@ const MoviesSchema = new Schema({
         type: [String],
         required: true
     },
-    length: {
-        type: Number,
-        required: true
-    },
     year: {
         type: Number,
         required: true

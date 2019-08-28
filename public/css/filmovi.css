@@ -1,28 +1,32 @@
 
 .movies-display {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    align-content: stretch;
     flex-wrap: wrap;
     flex-direction: row;
-    /* align-items: center; */
     width: 90%;
     margin: auto;
 }
+
 .movie-container .row{
     margin-right: 0;
 }
+
 .card-movie {
     border: 1px solid black;
     border-radius: 5px;
-    flex-grow: 1;
     flex-basis: 15%;
-    /* flex: 2 1 26%; explanation below */
+    flex-grow: 0;
     margin: 10px;
     background-color: white;
     text-align: center;
     font-size: 1.2em;
-    padding: 0 3px;
-    padding-bottom: 10px;
+    transition: transform 0.33s;
+}
+
+.card-movie:hover {
+    transform: scale(1.05);
 }
 
 .card-movie h3{
